@@ -1,0 +1,352 @@
+:root {
+    --color-primary: #2eca81;
+    --color-primary-light: #72e0ad; 
+    --color-secondary: #ffe686;
+    --color-secondary-dark: hsl(48, 100%, 56%);
+}
+
+/* RESET */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+*:focus {
+    outline:none;
+    box-shadow: 
+        0 0 0 1px white,
+        0 0 0 4px var(--color-primary),
+        0 0 0 7px white;
+}
+
+body {
+    margin:0;
+    font-family: sans-serif;
+    line-height:1.5;
+}
+
+button,
+input[type="button"] {
+    border:none;
+    cursor:pointer;
+}
+
+input,
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+}
+
+
+/* GENERAL */
+header {
+    padding: 3rem;
+    background: linear-gradient(to bottom right, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    color: white;
+}
+
+main {
+    max-width: 1050px;
+    margin:auto;
+    padding-inline:2rem;
+}
+
+h1 {
+    text-align:center;
+    font-size: 4rem;
+    margin-bottom: 1em;
+}
+
+/* COMPONENTS */
+.btn-primary {
+    background: var(--color-primary);
+    color:white;
+    padding: 1em 1.5em;
+    font-weight: bold;
+    border-radius:10px;
+    transition: background .2s ease-out;
+}
+
+.btn-secondary:hover {
+    background: var(--color-primary-light);
+}
+
+.btn-secondary {
+    background: var(--color-secondary);
+    color:#333;
+    padding: 1em 1.5em;
+    font-weight: bold;
+    border-radius:10px;
+    transition: background .2s ease-out;
+}
+
+.btn-secondary:hover {
+    background: var(--color-secondary-dark);
+}
+
+.deletion-confirmed,
+.deletion-refused {
+    width: 100px;
+    font-size:inherit;
+}
+
+.deletion-refused {
+    margin-top: 2rem;
+    margin-left: 2rem;
+}
+
+/* FORM */
+
+.search-recipes {
+    display:flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    align-items: center;
+    max-width: 1050px;
+    margin:auto;
+    padding-inline: 3rem;
+    padding-bottom: 2rem;
+}
+
+.search-recipes label {
+    font-size: 1.3rem;
+}
+
+.search-recipes input {
+    padding: 1em 1.5em;
+    border-radius: 10px;
+    border: none;
+}
+
+.search-recipes input::placeholder {
+    font-style:italic;
+}
+
+.search-recipes-button {
+    font-variant: small-caps;
+}
+
+
+/* RECIPE CARDS */
+
+.recipes-container {
+    --gap: 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap);
+    margin-block: 3rem;
+    align-items: flex-start;
+}
+
+.recipe-card {
+    position:relative;
+    width: min(400px, calc(33vw - 3rem));
+    padding: 2rem;
+    border: 3px solid var(--color-primary);
+    border-radius: 10px;
+}
+
+.recipe-card::before {
+    content: '';
+    position:absolute;
+    top: .5rem;
+    bottom: -1rem;
+    left: .5rem;
+    right: -1rem;
+    border: 3px solid var(--color-secondary);
+    border-radius:10px;
+    z-index:-1;
+}
+
+.recipe-img {
+    display:block;
+    max-width:100%;
+    border-radius: 10px 10px 0 0;
+}
+
+.recipe-card h2 {
+    color: var(--color-primary);
+    text-align:center;
+    font-variant: small-caps;
+}
+
+.recipe-card h3 {
+    color: var(--color-primary);
+}
+
+.tags {
+    display:flex;
+    flex-wrap:wrap;
+    gap: 1rem;
+    margin:auto;
+    width:max-content;
+
+    font-size:.85rem;
+}
+
+.tag {
+    background: var(--color-secondary);
+    padding: .5em 1em;
+    border-radius: 10px;
+    font-style:italic;
+    color:#333;
+}
+
+.recipe-see-more summary {
+    position: relative;
+    width:max-content;
+    margin-top: 2rem;
+    padding: .2em .3em;
+    color: var(--color-primary);
+    font-style:italic;
+    border-bottom: 2px dotted var(--color-primary);
+    /* border-radius:10px; */
+    cursor:pointer;
+}
+
+.ingredients-list-container,
+.recipe-instructions-container {
+    margin-block: 2rem;
+}
+
+.ingredients-list-container h3 {
+    font-size: 1.1rem;
+}
+
+.ingredients-list {
+    columns: 2;
+    column-gap: 2em;
+    padding-left:1rem;
+}
+
+.ingredient-item {
+    font-size: .9rem;
+}
+
+.ingredient-measure {
+    font-style:italic;
+    color: #333;
+}
+
+.recipe-video {
+    width: 100%;
+}
+
+.db-btns-container {
+    display:flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.add-to-db-btn,
+.remove-from-db-btn,
+.update-db-btn {
+    padding: .5em 1em;
+    font-size:.8rem;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.remove-from-db-btn {
+    background-color: var(--color-secondary);
+}
+
+.update-db-btn {
+    background-color: var(--color-primary);
+    color:white;
+}
+
+
+/* ====================== UPDATE MODAL ========================== */
+.modal-container {
+    position:fixed;
+    inset:0;
+    display:grid;
+    place-items:center;
+    place-content:center;
+    background: rgba(0 0 0 / .4);
+}
+
+.modal {
+    --padding: 3rem;
+    position: relative;
+    width: min(700px, 80vw);
+    max-height: 90vh;
+    padding: var(--padding);
+    background:white;
+    overflow-y:auto;
+    overflow-x:hidden;
+    border-top-left-radius: 1.15rem;
+    box-shadow:
+        0 0 0 3px var(--color-primary),
+        0 0 0 9px white;
+}
+
+.modal-close-btn {
+    --padding-reverse: calc(0rem - var(--padding));
+    position:sticky;
+    top:var(--padding-reverse);
+    left:var(--padding-reverse);
+    margin-top:var(--padding-reverse);
+    margin-left:var(--padding-reverse);
+    display:grid;
+    place-content:center;
+    aspect-ratio: 1;
+    padding:.5rem .5rem .6rem .6rem;
+    font-size:2rem;
+    color:#666;
+    background:var(--color-secondary);
+    border:none;
+    border-radius:50% 0;
+}
+
+.modal h2 {
+    font-size: 2rem;
+    margin-bottom:1.2em;
+    color:var(--color-primary);
+}
+
+.form-modify-recipe {
+    display:flex;
+    flex-direction: column;
+}
+
+.form-modify-recipe label {
+    margin-bottom: .5rem;
+    font-weight:bold;
+}
+
+.modify-ingredients-container {
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.modify-input,
+.modify-textarea {
+    padding: .5rem 1rem;
+    margin-bottom:2rem;
+    color: #333;
+}
+
+.update-recipe-button {
+    width:max-content;
+    align-self:center;
+}
+
+.update-status {
+    display:inline-block;
+    margin-left:2rem;
+    color:var(--color-primary);
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
